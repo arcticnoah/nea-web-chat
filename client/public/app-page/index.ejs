@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="description" content="" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes" />
+
+	<title>EVOL Chat | App Page</title>
+	<link rel="icon" href="../data/logo-colour.png" />
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet" href="../data/shared.css" />
+	<link rel="stylesheet" href="../app-page/style.css" />
+
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="https://kit.fontawesome.com/945a11f776.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap"
+		rel="stylesheet" />
+</head>
+
+<body>
+	<div id="preloader">
+		<div class="loader">
+			<span class="inner1"></span>
+			<span class="inner2"></span>
+			<span class="inner3"></span>
+			<div id="preloader-text">Connecting</div>
+		</div>
+	</div>
+
+	<div class="modal" tabindex="-1" role="dialog" id="server-add-modal">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Add Server</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" id="server-add-modal-body">
+					<div class="form-input-container" id="server-add-modal-invite-input-container">
+						<input class="form-control" id="server-add-modal-invite-input" type="text"
+							name="server-add-invite" placeholder="Server Invite Code" />
+						<i class="input-icon fas" id="server-add-modal-invite-icon"></i>
+					</div>
+					<div class="form-input-container" id="server-add-modal-password-input-container">
+						<input class="form-control" id="server-add-modal-password-input" type="text"
+							name="server-add-password" placeholder="Server Password (only for private servers)" />
+						<i class="input-icon fas" id="server-add-modal-password-icon"></i>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">
+						Close
+					</button>
+					<button type="button" class="btn active" id="server-add-confirm-button">
+						Add Server 
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal" tabindex="-1" role="dialog" id="server-browser-modal">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Server Browser</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" id="server-browser-modal-body">
+					<div id="server-browser-card-container"></div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">
+						Close
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal" tabindex="-1" role="dialog" id="server-invite-modal">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="server-invite-modal-title">Server Invite</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" id="server-invite-modal-body">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">
+						Close
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal" tabindex="-1" role="dialog" id="create-server-channel-modal">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Create Server Channel</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-input-container" id="create-server-channel-modal-name-input-container">
+						<input class="form-control" id="create-server-channel-modal-name-input" type="text"
+							name="create-server-channel-name" placeholder="Channel Name" />
+						<i class="input-icon fas" id="create-server-channel-modal-name-icon"></i>
+					</div>
+					<div class="form-input-container" id="create-server-channel-modal-description-input-container">
+						<input class="form-control" id="create-server-channel-modal-description-input" type="text"
+							name="create-server-channel-description" placeholder="Channel Description (Optional)" />
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">
+						Close
+					</button>
+					<button type="button" class="btn active" id="create-server-channel-button">
+						Create Channel
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal" tabindex="-1" role="dialog" id="edit-server-channel-modal">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Edit Server Channel</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-input-container" id="edit-server-channel-modal-name-input-container">
+						<input class="form-control" id="edit-server-channel-modal-name-input" type="text"
+							name="edit-server-channel-name" placeholder="Channel Name" />
+						<i class="input-icon fas" id="edit-server-channel-modal-name-icon"></i>
+					</div>
+					<div class="form-input-container" id="edit-server-channel-modal-description-input-container">
+						<input class="form-control" id="edit-server-channel-modal-description-input" type="text"
+							name="edit-server-channel-description" placeholder="Channel Description (Optional)" />
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">
+						Close
+					</button>
+					<button type="button" class="btn btn-overlay" id="delete-server-channel-button">
+						Delete Channel
+					</button>
+					<button type="button" class="btn active" id="edit-server-channel-button">
+						Edit Channel
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="main-container">
+		<div class="container-fluid" id="top-row">
+			<div class="" id="server-list-container"></div>
+			<div class="" id="server-options">
+				<!-- TODO: add server join button -->
+				<button type="button" class="btn server-option-button" id="server-add-button" disabled="true">
+					<i class="fas fa-folder-plus server-button-icon"></i>
+				</button>
+				<button type="button" class="btn server-option-button" id="server-browser-button" disabled="true">
+					<i class="fas fa-columns server-button-icon"></i>
+				</button>
+				<button type="button" class="btn server-option-button" id="server-invite-button" disabled="true">
+					<i class="fas fa-link server-button-icon"></i>
+				</button>
+			</div>
+		</div>
+
+		<div class="row container-fluid" id="main-row">
+			<div class="column container-fluid d-none d-lg-block d-xl-block" id="server-details-column">
+				<div class="row container-fluid" id="server-name-container">
+					<p id="server-name-text"></p>
+					<button class="navbar-toggler btn d-block d-lg-none d-xl-none" type="button"
+						aria-pressed="true" id="server-details-inside-toggle">
+						<i class="fas fa-bars"></i>
+					</button>
+				</div>
+				<div class="container-fluid" id="channels-column">
+					<div class="container-fluid channels-container" id="server-channels-container">
+						<div class="row container-fluid channels-header-container"
+							id="server-channels-header-container">
+							<p class="channels-header-text">
+								Server Channels:
+							</p>
+							<button class="channels-header-button btn" type="button" id="server-channels-button">
+								<i class="fas fa-plus"></i>
+							</button>
+						</div>
+						<div class="btn-group-vertical btn-group-toggle channels-group" id="server-channels-group"
+							data-toggle="buttons"></div>
+					</div>
+					<div class="container-fluid channels-container" id="user-channels-container">
+						<div class="row container-fluid channels-header-container" id="user-channel-header-container">
+							<p class="channels-header-text">
+								User Channels:
+							</p>
+						</div>
+						<div class="btn-group-vertical btn-group-toggle channels-group" id="user-channels-group"
+							data-toggle="buttons"></div>
+					</div>
+				</div>
+				<div class="row container-fluid" id="user-profile-container">
+					<div id="user-profile-username"><%=user_name%></div>
+					#
+					<div id="user-profile-id"><%=user_id%></div>
+					<a href="/logout">
+						<button class="btn active">Logout</button>
+					</a>
+				</div>
+			</div>
+			<div class="column container-fluid" id="content-details-column">
+				<div class="container-fluid" id="channel-bar-container">
+					<button class="navbar-toggler btn d-block d-lg-none d-xl-none" type="button" aria-pressed="true"
+						id="server-details-toggle">
+						<i class="fas fa-bars"></i>
+					</button>
+					<p id="channel-bar-name">Channel Name</p>
+					<div class="channel-bar-divider"></div>
+					<p class="d-none d-lg-block d-xl-block" id="channel-bar-description">
+						Channel Description
+					</p>
+					<div class="form-input-container" id="channel-bar-search-container">
+						<input class="form-control" id="channel-bar-search-input" type="search" name="search"
+							autocomplete="search" placeholder="Search" />
+					</div>
+					<button class="navbar-toggler btn d-block d-lg-none d-xl-none" type="button" aria-pressed="true"
+						id="user-list-toggle">
+						<i class="fas fa-bars"></i>
+					</button>
+				</div>
+				<div class="row container-fluid" id="content-row">
+					<div class="column container-fluid" id="message-column">
+						<div class="container-fluid" id="message-list-container"></div>
+						<div class="container-fluid" id="message-box-container">
+							<form id="message-box-form" action="">
+								<div class="input-group mb-3" id="message-box-text-container">
+									<input class="form-control" id="message-box-text-input" type="text"
+										pattern="^[a-zA-Z1-9].*" name="text" placeholder="Type message here..."
+										autocomplete="off" disabled="true" />
+									<div class="input-group-append">
+										<button class="btn" id="message-box-send-button" type="submit" disabled="true">
+											<i class="fas fa-paper-plane" id="message-box-send-icon"></i>
+										</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="column container-fluid d-none d-lg-block d-xl-block" id="user-list-column">
+						<div class="row container-fluid users-list-header-container"
+							id="online-users-list-header-container">
+							<p class="user-list-header-text">
+								Online Users:
+							</p>
+						</div>
+						<div class="users-list-group" id="online-users-list-group"></div>
+						<div class="row container-fluid users-list-header-container"
+							id="away-users-list-header-container">
+							<p class="user-list-header-text">Away Users:</p>
+						</div>
+						<div class="users-list-group" id="away-users-list-group"></div>
+						<div class="row container-fluid users-list-header-container"
+							id="offline-users-list-header-container">
+							<p class="user-list-header-text">
+								Offline Users:
+							</p>
+						</div>
+						<div class="users-list-group" id="offline-users-list-group"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="module" src="../lib/validate-inputs.js"></script>
+	<script type="module" src="../app-page/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+/.vscode
+
+node_modules
+
+*.db
+
+.DS_Store
+
+*.sh
+*.pem
+*.pub
+
+client/public/data/user/
+client/public/data/server/
+
+client/public/data/user/!default!.png
+client/public/data/server/!default!.png

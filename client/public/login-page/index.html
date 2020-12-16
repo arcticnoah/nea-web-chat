@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>EVOL Chat | Login Page</title>
+    <link rel="icon" href="../data/logo-colour.png" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="../data/shared.css" />
+    <link rel="stylesheet" href="../login-page/style.css" />
+
+
+    <script src="https://kit.fontawesome.com/945a11f776.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <div id="preloader">
+        <div class="loader">
+            <span class="inner1"></span>
+            <span class="inner2"></span>
+            <span class="inner3"></span>
+        </div>
+    </div>
+
+    <!-- Note: A lot of the UI code originally came from this blog post: -->
+    <!-- https://www.florin-pop.com/blog/2019/03/double-slider-sign-in-up-form/ -->
+
+    <div class="container" id="container">
+        <div class="form-container login-container">
+            <form action="/login" method="POST" autocomplete="off">
+                <p class="container-text">Login</p>
+
+                <div class="form-input-container" id="login-username-container">
+                    <input class="form-control" id="login-username-input" type="text" name="username"
+                        autocomplete="username" placeholder="Username" />
+                    <i class="fas" id="login-username-icon"></i>
+                </div>
+
+                <div class="form-input-container" id="login-password-container">
+                    <input class="form-control" id="login-password-input" type="password" name="password"
+                        autocomplete="current-password" placeholder="Password" />
+                    <i class="fas" id="login-password-icon"></i>
+                </div>
+
+                <button class="btn" type="submit" value="Login" disabled="disabled" id="login-button">Login</button>
+            </form>
+        </div>
+
+        <div class="form-container signup-container">
+            <form action="/createuser" method="POST" autocomplete="off">
+                <p class="container-text">Sign Up</p>
+
+                <div class="form-input-container" id="signup-email-container">
+                    <input class="form-control" id="signup-email-input" type="email" name="email" autocomplete="email"
+                        placeholder="Email" />
+                    <i class="fas" id="signup-email-icon"></i>
+                </div>
+
+                <div class="form-input-container" id="signup-username-container">
+                    <input class="form-control" id="signup-username-input" type="text" name="username"
+                        autocomplete="username" placeholder="Username" />
+                    <i class="fas" id="signup-username-icon"></i>
+                </div>
+
+                <div class="form-input-container" id="signup-password-container">
+                    <input class="form-control" id="signup-password-input" type="password" name="password"
+                        autocomplete="new-password" placeholder="Password" />
+                    <i class="fas" id="signup-password-icon"></i>
+                </div>
+
+                <div class="form-input-container" id="signup-passwordconfirmation-container">
+                    <input class="form-control" id="signup-passwordconfirmation-input" type="password"
+                        name="passwordConfirmation" autocomplete="new-password" placeholder="Password Confirmation" />
+                    <i class="fas" id="signup-passwordconfirmation-icon"></i>
+                </div>
+
+                <div class="form-input-container" id="signup-emailcode-container">
+                    <input class="form-control" id="signup-emailcode-input" type="text" name="emailCode"
+                        placeholder="Email Code" disabled="disabled" />
+                    <i class="fas" id="signup-emailcode-icon"></i>
+                </div>
+
+                <button class="btn" type="submit" value="Sign Up" disabled="disabled" id="signup-button">Sign
+                    Up</button>
+            </form>
+        </div>
+
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <p>Already have an account?</p>
+                    <button class="btn btn-overlay" id="overlay-left-btn">Login</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <p>Don't have an account?</p>
+                    <button class="btn btn-overlay" id="overlay-right-btn">Sign Up</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="emailCodeModal" aria-hidden="true"
+        id="email-code-modal">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Email Code</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="email-code-modal-body">
+                    <p id="email-code-modal-body-text"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../lib/validate-inputs.js"></script>
+    <script type="module" src="../login-page/script.js"></script>
+</body>
+
+</html>

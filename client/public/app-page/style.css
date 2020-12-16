@@ -1,0 +1,598 @@
+::-webkit-scrollbar {
+	display: none;
+}
+
+/* Layout */
+
+.container-fluid {
+	padding: 0 !important;
+	margin: 0 !important;
+	min-height: 0px;
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+	flex: 1;
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+}
+
+#main-container {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+#top-row {
+	display: flex;
+	flex-direction: row;
+	height: 72px;
+	background: var(--theme2);
+}
+
+#server-list-container {
+	display: flex;
+	flex-direction: row;
+	flex: 1;
+	margin: 12px 0px 12px 12px;
+	border-right: 2px var(--theme4) solid;
+}
+
+#server-options {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	margin: 12px 12px 12px 0px;
+}
+
+#server-details-column {
+	min-width: 310px;
+	max-width: 310px;
+	background: var(--theme4);
+}
+
+#server-name-container {
+	height: 60px;
+	border-bottom: 2px solid var(--theme3);
+}
+
+#channels-column {
+	height: calc(100% - 136px);
+}
+
+.channels-container {
+	height: 50%;
+	padding-bottom: 16px !important;
+}
+
+#server-channels-container {
+	border-bottom: 2px solid var(--theme3);
+}
+
+#user-profile-container {
+	height: 60px;
+	background: var(--theme3);
+}
+
+#channel-bar-container {
+	display: flex;
+	flex-direction: row;
+	padding-left: 24px !important;
+	height: 60px;
+	background: var(--theme5);
+	border-bottom: 2px solid var(--theme3);
+}
+
+#content-row {
+	height: 100%;
+}
+
+#message-list-container {
+	background: var(--theme5);
+	border-bottom: 2px solid var(--theme3);
+	overflow-y: scroll;
+	overflow-x: hidden;
+	scrollbar-width: none;
+	max-width: 100% !important;
+	height: 100px;
+	flex-grow: 1;
+	padding-top: 32px !important;
+	padding-bottom: 16px !important;
+}
+
+#message-box-container {
+	height: 100px;
+	background: var(--theme5);
+}
+
+#user-list-column {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	scrollbar-width: none;
+	min-width: 240px;
+	max-width: 240px;
+	height: calc(100vh - 132px);
+	background: var(--theme4);
+	padding-bottom: 16px !important;
+}
+
+/* Desktop display */
+
+@media only screen and (min-width: 993px) {
+	.hide {
+		display: block !important;
+	}
+}
+
+/* Mobile size changes */
+
+@media only screen and (max-width: 992px) {
+	#server-details-column {
+		min-width: 40% !important;
+		max-width: 310px !important;
+	}
+
+	#user-list-column {
+		min-width: 40% !important;
+		max-width: 310px !important;
+	}
+
+	#server-browser-modal-body {
+		grid-template-columns: 100% !important;
+	}
+}
+
+/* Message box */
+
+#message-box-text-container {
+	padding-top: 30px;
+	margin-left: 15px;
+	margin-right: 15px;
+	width: calc(100% - 30px);
+}
+
+#message-box-text-input {
+	border-top-right-radius: 0px !important;
+	border-bottom-right-radius: 0px !important;
+}
+
+#message-box-send-button {
+	width: 72px;
+	background: linear-gradient(0deg, var(--accent1) 0%, var(--accent2) 100%);
+	color: var(--theme9);
+}
+
+#message-box-send-icon {
+	position: relative;
+	top: -1px;
+}
+
+/* Menu Toggle Buttons */
+.navbar-toggler {
+	width: 26px;
+	height: 26px;
+	margin: auto 0;
+	background: var(--theme3);
+}
+
+.navbar-toggler > i {
+	position: relative;
+	left: -13px;
+	top: 1px;
+	width: 26px;
+	height: 26px;
+	color: var(--theme7);
+}
+
+.active > i {
+	color: var(--theme9);
+}
+
+/* Server Buttons */
+
+.server-button {
+	width: 48px;
+	height: 48px;
+	margin-right: 12px;
+	border-radius: 24px;
+	background: var(--theme4);
+}
+
+.server-button.active {
+	border-radius: 8px !important;
+}
+
+.server-option-button {
+	width: 48px;
+	height: 48px;
+	margin-left: 12px;
+	border-radius: 24px;
+	background: var(--theme4);
+}
+
+.server-button-image {
+	width: inherit;
+	height: inherit;
+}
+
+.server-button-icon {
+	font-size: 20px;
+	margin: 2px;
+	color: var(--theme8);
+}
+
+/* Server Name Text */
+
+#server-name-text {
+	font-weight: 700;
+	padding-left: 14px;
+	padding-top: 16px;
+}
+
+#server-details-inside-toggle {
+	margin-left: auto;
+	margin-right: 12px;
+}
+
+/* Channel List */
+
+.channels-header-container {
+	margin: 16px 12px !important;
+	width: calc(100% - 24px);
+	height: 24px;
+}
+
+.channels-header-text {
+	margin-bottom: 0px !important;
+	font-weight: 700;
+	font-size: 14px;
+	height: min-content;
+}
+
+.channels-header-button {
+	position: relative;
+	top: -7px;
+	margin-left: auto;
+	margin-right: 0;
+	color: var(--theme7);
+}
+
+.channels-header-button:hover {
+	color: var(--theme8);
+}
+
+.channels-group {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	scrollbar-width: none;
+	width: calc(100% - 24px);
+	height: calc(100% - 24px);
+	margin: 0px 12px;
+}
+
+/* Channel Buttons */
+
+.channel-button {
+	padding-left: 0px;
+	margin-bottom: 12px !important;
+	height: 40px;
+	flex: 0 !important;
+	background: var(--theme4);
+	color: var(--theme7);
+	text-align: left;
+	border-radius: 8px !important;
+}
+
+.channel-button:hover {
+	background: var(--theme5);
+	color: var(--theme8);
+}
+
+.channel-button > a {
+	display: block;
+	width: auto;
+	margin-top: -6px;
+	margin-right: -12px;
+	padding: 8px 0.75rem 10px 0.75rem;
+}
+
+.channel-button-with-extras {
+	padding-right: 0px !important;
+}
+
+.channel-button-with-extras > a {
+	display: block;
+	width: calc(100% - 20px);
+	margin-top: -6px;
+	margin-right: -12px;
+	padding: 8px 0px 10px 0.75rem;
+}
+
+.channel-extra-button {
+	position: relative;
+	top: -40px;
+	left: -1px;
+	float: right;
+	margin-left: 8px;
+	padding: 12px 8px;
+	color: var(--theme7);
+}
+
+.channel-extra-button:hover {
+	color: var(--theme8);
+}
+
+/* Channel Bar */
+
+#server-details-toggle {
+	margin-right: 24px;
+}
+
+#channel-bar-name {
+	margin: auto 0;
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.channel-bar-divider {
+	margin: auto 24px;
+	height: 50%;
+	/* border-right: 2px solid var(--theme4); */
+}
+
+#channel-bar-description {
+	margin: auto 0;
+	font-size: 14px;
+	font-weight: 400;
+}
+
+#channel-bar-search-container {
+	margin: auto 0;
+	margin-left: auto;
+	margin-right: 24px;
+}
+
+#channel-bar-search-input {
+	background: var(--theme4) !important;
+}
+
+#user-list-toggle {
+	margin-right: 24px;
+}
+
+/* Message Container */
+
+.msg-container {
+	width: 100%;
+}
+
+/* Message Users */
+
+.msg-user {
+	position: relative;
+	top: -28px;
+	display: inline-block;
+}
+
+.msg-user-name {
+	width: 120px;
+	text-align: center;
+	font-weight: 600;
+	font-size: 11px;
+}
+
+/* Message Content */
+
+.msg {
+	display: inline-block;
+	width: calc(100% - 120px);
+}
+
+.msg-text {
+	font-weight: 600;
+	font-size: 14px;
+	margin-bottom: 6px;
+	padding: 6px 12px;
+	border-radius: 8px;
+	overflow-wrap: anywhere;
+}
+
+.local-msg-text {
+	margin-right: 32px;
+	text-align: right;
+	background: linear-gradient(0deg, var(--accent1) 0%, var(--accent2) 100%);
+	color: var(--theme9);
+}
+
+.other-user-msg-text {
+	margin-left: 32px;
+	background: var(--theme4);
+}
+
+.msg-time {
+	font-weight: 600;
+	color: var(--theme7);
+	font-size: 10px;
+	margin-bottom: 0px !important;
+}
+
+.local-msg-time {
+	margin-right: 40px;
+	text-align: right;
+}
+
+.other-user-msg-time {
+	margin-left: 40px;
+}
+
+.msg-button {
+	position: relative;
+	top: 34px;
+	z-index: 2000 !important;
+	color: var(--theme8);
+}
+
+.msg-button:hover {
+	color: var(--theme9);
+}
+
+/* User List */
+
+.users-list-header-container {
+	margin: 16px 12px !important;
+	width: calc(100% - 24px);
+	height: 24px;
+}
+
+.user-list-header-text {
+	margin-bottom: 0px !important;
+	font-weight: 700;
+	font-size: 14px;
+	height: min-content;
+}
+
+.users-list-group {
+	width: calc(100% - 24px);
+	/* height: calc(100% - 24px); */
+	margin: 0px 12px;
+}
+
+/* User Cards */
+
+.user-list-card {
+	margin: 0px 20px;
+	margin-bottom: 12px;
+	padding: 12px 12px;
+	width: calc(100% - 40px);
+	height: 72px;
+	border-radius: 8px;
+}
+
+.user-list-card:hover {
+	background: var(--theme3);
+}
+
+.user-list-image {
+	width: 48px;
+	height: 48px;
+	border-radius: 24px;
+	background: var(--theme3);
+}
+
+.user-list-text {
+	margin-left: 4px;
+	padding: 6px 0px;
+	width: calc(100% - 52px);
+}
+
+.user-list-name {
+	margin-bottom: 0px !important;
+	width: 100%;
+	font-weight: 700;
+	font-size: 14px;
+}
+
+.user-list-time {
+	margin-bottom: 0px !important;
+	width: 100%;
+	font-size: 12px;
+	color: var(--theme7);
+}
+
+/* Modal */
+
+.form-input-container {
+	margin-bottom: 16px;
+}
+
+.input-icon {
+	position: absolute;
+	bottom: 3px;
+	right: 4px;
+	width: 24px;
+	height: 24px;
+	color: var(--theme8);
+}
+
+.spinner-border {
+	top: 11px;
+	right: 11px;
+	height: 16px;
+	width: 16px;
+	border-width: 0.15em;
+}
+
+.btn-overlay {
+	background: transparent;
+	color: var(--theme7);
+	border: 1px solid var(--theme7);
+}
+
+.btn-overlay:hover {
+	background: var(--danger);
+	color: var(--theme9);
+	border: 1px solid var(--danger);
+}
+
+/* Server Browser */
+
+#server-browser-modal > .modal-dialog {
+	max-width: 860px;
+}
+
+#server-browser-modal-body {
+	margin: 24px;
+	padding: 0;
+}
+
+#server-browser-card-container {
+	display: grid;
+	grid-template-columns: calc(50% - 12px) calc(50% - 12px);
+	column-gap: 24px;
+	row-gap: 24px;
+}
+
+.server-browser-server-card {
+	background: var(--theme2);
+	width: 100%;
+	height: 96px;
+	border-radius: 8px;
+}
+
+.server-browser-server-card-joined {
+	background: var(--theme3) !important;
+	border: 2px var(--theme2) solid;
+}
+
+.server-browser-server-icon {
+	width: 64px;
+	height: 64px;
+	border-radius: 32px;
+	margin: 16px;
+	background: var(--theme4);
+}
+
+.server-browser-server-details-container {
+	display: flex;
+	flex: 1;
+	height: 32px;
+	margin: 32px 16px;
+}
+
+.server-browser-server-name {
+	font-weight: 700;
+	font-size: 14px;
+}
+
+.server-browser-server-options-container {
+	display: flex;
+	justify-content: flex-end;
+	height: 32px;
+	margin: 32px 16px;
+}
