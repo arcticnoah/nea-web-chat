@@ -6,9 +6,9 @@
 
 > A website-based chat application, inspired by [Discord](https://discord.com/), created for my A-Level (2019-2020 Exam) Computer Science coursework. Its focus was on being privacy-friendly, by letting people host their own chat servers (which would store all the data) for their own communities, be it family, friends, group activities, etc. It was also very accessible, as all it required was a Javascript-enabled web browser with an active internet connection.
 
-***Note:** The program is missing useful, key features since it was created for my A-Level coursework, which was cancelled in March 2020 due to COVID-19 and I haven't worked on it since.*
+***Note:** The program is missing useful, key features since it was my **first Javascript project**, created for my A-Level coursework, which was cancelled in March 2020 due to COVID-19 and I haven't worked on it since.*
 
-## Video/Screenshots
+## Video Demo
 
 <p align="center">
     <img src="https://img.youtube.com/vi/aI1gW4By7SU/mqdefault.jpg" href="https://youtu.be/aI1gW4By7SU">
@@ -17,18 +17,33 @@
     <a href="https://youtu.be/aI1gW4By7SU">Click to watch the Youtube Video Demo</a>
 </p>
 
-<br>
+## Screenshots
 
-![Screenshot 1](/screenshot1.png)
-
-![Screenshot 2](/screenshot2.png)
-
-![Screenshot 3](/screenshot3.png)
+<h6 align="center">
+    <img src="screenshot1.png">
+    <br>
+    <br>
+    Web Client Main Messaging View
+    <br>
+    <br>
+    <br>
+    <img src="screenshot2.png">
+    <br>
+    <br>
+    Web Client Create Chat Channel Modal
+    <br>
+    <br>
+    <br>
+    <img src="screenshot3.png">
+    <br>
+    <br>
+    Web Client Login Page
+</h6>
 
 ## Helpful/used resources
 
 - [Socket.io Chat Example](https://github.com/socketio/socket.io/tree/master/examples/chat)
-- The login/register page uses (only minorly edited) code from: https://www.florin-pop.com/blog/2019/03/double-slider-sign-in-up-form/
+- [Login/register page tutorial](https://www.florin-pop.com/blog/2019/03/double-slider-sign-in-up-form/), which I used as a basis for mine
 
 ## License
 
@@ -44,10 +59,10 @@
 
 Make sure you have the following installed:
 
-- Node.js (tested with v14)
-- Python (tested with 3.8, needed for `sqlite3`, make sure its accessible via your `PATH`/environment variables)
+- **Node.js** (tested with v14)
+- **Python** (tested with 3.8, needed for `sqlite3`, make sure its accessible via your `PATH`/environment variables)
 
-***Note:** Only been actively tested on Windows, occasionally on Debian Linux.*
+***Note:** Only been actively tested on x64 Windows and occasionally on x64 Debian-based Linux.*
 
 ## How to install/run
 
@@ -72,7 +87,9 @@ Password: password123*
 ```
 5. Once successfully logged in, you can join the chat server you're running by accessing the server selector in the top right, with the following icon:
 
-![Image showing the server browser button](/server-browser.png)
+<p align="center">
+   <img src="server-browser.png">
+</p>
 
 ## (Optional) Setting up an Gmail account for user email verification
 
